@@ -63,3 +63,44 @@ end
 # p stock_picker(stocks)
 
 def towers
+    tower_0 = [8,7,6,5,4,3,2,1] # 8 discs in the first one. Biggest currently on bottom
+    tower_1 = []
+    tower_2 = []
+    towers = [tower_0,tower_1,tower_2]
+    game_over = false
+    until game_over == true do
+        fully_sorted = [1,2,3,4,5,6,7,8]
+        game_over = true if tower_0 == fully_sorted || tower_1 == fully_sorted || tower_2 == fully_sorted
+        render(towers)
+        input = prompt_user()
+        move(input, towers)
+    end
+end
+
+def prompt_user()
+    puts "please select a pile to move from and where to put it"
+    puts "Separate by spaces. It should look like '0 2' or '1 2'"
+    input = gets.chomp
+    return input.split(" ").map {|ele| ele.to_i}
+end
+
+def move(input, towers)
+    #tower to move from is towers[input[0]]
+    #tower to move to is towers[input[1]]
+    if towers[input[1]].empty? || # if the tower you are going to is empty...
+        towers[input[0]].last < towers[input[1]].last #...or the value is big enough
+        new_disc = towers[input[0]].pop #take off the last disc
+        towers[input[1]].push(new_disc) #and place it on the new tower
+    else
+        puts "YOU CANNOT MOVE THERE!"
+    end
+end
+
+def render(towers)
+    p "tower_0: #{towers[0]}"
+    p "tower_1: #{towers[1]}"
+    p "tower_2: #{towers[2]}" #this way, the user can see it
+    puts
+end
+
+towers

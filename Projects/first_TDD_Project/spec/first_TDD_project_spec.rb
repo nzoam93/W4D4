@@ -74,6 +74,21 @@ describe "stock_picker" do
     end
 end
 
+describe "towers" do
+    let (:towers = [[8,7,6,5,4,3,2,1],[],[]])
+    describe "move" do
+        it "should be able to move a piece from a tower to another"
+
+        it "should not move if the tower you are moving to has a piece that is smaller"
+    end
+
+    describe "won?" do
+        it "should return true if the array is in the opposite order as it started"
+            #didn't end up coding it with a "win" function. I have a game-over boolean instead
+    end
+end
+
+
 # describe Dessert do
 #   let(:chef) { double("chef", :titleize => "Chef #{@name} the Great Baker", :bake => 10) }
 #   subject(:dessert) {Dessert.new("pie",400,:chef)}
